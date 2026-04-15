@@ -28,6 +28,8 @@ class Board
     @board[column_index]
   end
 
+  # go from bottom left to top right
+  # there should be no tiles to the bottom left of parameters column, row
   def positive_diagonal(column, row)
     diagonal_arr = []
     # repeat until tile is out of bounds
@@ -35,6 +37,20 @@ class Board
       diagonal_arr.push(@board[column][row])
       column += 1
       row += 1
+    end
+
+    diagonal_arr
+  end
+
+  # go from top left to bottom right
+  # there should be no tiles to the top left of parameters column, row
+  def negative_diagonal(column, row)
+    diagonal_arr = []
+    # repeat until tile is out of bounds
+    while (column < WIDTH) && (row >= 0)
+      diagonal_arr.push(@board[column][row])
+      column += 1
+      row -= 1
     end
 
     diagonal_arr
