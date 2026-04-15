@@ -104,4 +104,26 @@ class Board
 
     diagonal_arr
   end
+
+  # returns true if all columns are full, false otherwise
+  def board_full?
+    @board.each.with_index do |_, column_index|
+      return false unless column_full?(column_index)
+    end
+    true
+  end
+
+  ### UNTESTED METHODS ###
+  # returns true if the column is full, false otherwise
+  def column_full?(column_id)
+    @board[column_id].include?(nil) == false
+  end
+
+  private
+
+  # returns the the first empty slot from the bottom in the specified column
+  # returns nil if the column is full
+  def get_new_chip_position_in_column(column_id)
+    @board[column_id].index(nil)
+  end
 end

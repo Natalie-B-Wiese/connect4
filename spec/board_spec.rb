@@ -273,4 +273,34 @@ describe Board do
       end
     end
   end
+
+  describe '#board_full?' do
+    context 'when board is empty' do
+      it 'returns false' do
+        allow(board).to receive(:column_full?).and_return(false)
+        expect(board.board_full?).to be false
+      end
+    end
+
+    context 'when only first column is full' do
+      it 'returns false' do
+        allow(board).to receive(:column_full?).and_return(true, false)
+        expect(board.board_full?).to be false
+      end
+    end
+
+    context 'when 6 columns are full but 7th column is empty' do
+      it 'returns false' do
+        allow(board).to receive(:column_full?).and_return(true, true, true, true, true, true, false)
+        expect(board.board_full?).to be false
+      end
+    end
+
+    context 'when all columns are full' do
+      it 'returns true' do
+        allow(board).to receive(:column_full?).and_return(true)
+        expect(board.board_full?).to be true
+      end
+    end
+  end
 end
