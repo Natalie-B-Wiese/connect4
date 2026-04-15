@@ -28,6 +28,53 @@ class Board
     @board[column_index]
   end
 
+  def all_diagonals
+    diagonal_arr = []
+
+    # positive diagonal
+    col = 0
+    row = HEIGHT - 4
+
+    # 0, 2
+    # 0, 1
+    # 0, 0
+    while row >= 0
+      diagonal_arr.push(positive_diagonal(col, row))
+      row -= 1
+    end
+
+    # width is 7
+    # while col<=3
+
+    # 1, 0
+    # 2, 0
+    # 3, 0
+    col = 1
+    row = 0
+    while col <= (WIDTH - 4)
+      diagonal_arr.push(positive_diagonal(col, row))
+      col += 1
+    end
+
+    # negative diagonals
+    col = 0
+    row = 4 - 1
+
+    while row < HEIGHT
+      diagonal_arr.push(negative_diagonal(col, row))
+      row += 1
+    end
+
+    col = 1
+    row = HEIGHT - 1
+    while col <= (WIDTH - 4)
+      diagonal_arr.push(negative_diagonal(col, row))
+      col += 1
+    end
+
+    diagonal_arr
+  end
+
   # go from bottom left to top right
   # there should be no tiles to the bottom left of parameters column, row
   def positive_diagonal(column, row)
