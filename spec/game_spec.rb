@@ -128,6 +128,26 @@ describe Board do
       end
     end
 
+    context 'when getting column 4 row 0' do
+      row = 0
+      column = 4
+
+      it 'returns an array' do
+        result = board.positive_diagonal(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 3' do
+        result = board.positive_diagonal(column, row)
+        expect(result.length).to eq 3
+      end
+
+      it 'all items are nil on new board' do
+        result = board.positive_diagonal(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+
     context 'when getting top left' do
       row = 5
       column = 0
@@ -144,6 +164,88 @@ describe Board do
 
       it 'all items are nil on new board' do
         result = board.positive_diagonal(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+  end
+
+  describe '#negative_diagonal' do
+    context 'when getting top left' do
+      row = 5
+      column = 0
+
+      it 'returns an array' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 6' do
+        result = board.negative_diagonal(column, row)
+        expect(result.length).to eq 6
+      end
+
+      it 'all items are nil on new board' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+
+    context 'when getting column 0 row 2' do
+      row = 2
+      column = 0
+
+      it 'returns an array' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 3' do
+        result = board.negative_diagonal(column, row)
+        expect(result.length).to eq 3
+      end
+
+      it 'all items are nil on new board' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+
+    context 'when getting column 4 top row' do
+      row = 5
+      column = 4
+
+      it 'returns an array' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 3' do
+        result = board.negative_diagonal(column, row)
+        expect(result.length).to eq 3
+      end
+
+      it 'all items are nil on new board' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+
+    context 'when getting bottom left' do
+      row = 0
+      column = 0
+
+      it 'returns an array' do
+        result = board.negative_diagonal(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 1' do
+        result = board.negative_diagonal(column, row)
+        expect(result.length).to eq 1
+      end
+
+      it 'all items are nil on new board' do
+        result = board.negative_diagonal(column, row)
         expect(result).to all(be_nil)
       end
     end
