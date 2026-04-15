@@ -34,4 +34,36 @@ describe Board do
       end
     end
   end
+
+  describe '#column' do
+    context 'when getting the first column' do
+      first_column = 0
+
+      it 'returns an array' do
+        result = board.column(first_column)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length equal to board height' do
+        result = board.column(first_column)
+        height = Board::HEIGHT
+        expect(result.length).to eq(height)
+      end
+    end
+
+    context 'when getting the last column' do
+      last_column = 6
+
+      it 'returns an array' do
+        result = board.column(last_column)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length equal to board height' do
+        result = board.row(last_column)
+        height = Board::HEIGHT
+        expect(result.length).to eq(height)
+      end
+    end
+  end
 end
