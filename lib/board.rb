@@ -29,34 +29,47 @@ class Board
   end
 
   def all_diagonals
+    all_positive_diagonals + all_negative_diagonals
+  end
+
+  def all_positive_diagonals
     diagonal_arr = []
 
-    # positive diagonal (left edge (exclude corner))
+    # left edge (exclude corner)
+    # loop works in upward direction
     (1..(HEIGHT - 4)).each do |current_row|
       diagonal_arr.push(positive_diagonal(0, current_row))
     end
 
-    # positive diagonal bottom left corner
+    # bottom left corner
     diagonal_arr.push(positive_diagonal(0, 0))
 
-    # positive diagonal (bottom edge (exclude corner))
+    # bottom edge (exclude corner)
+    # loop works in rightward direction
     (1..(WIDTH - 4)).each do |current_col|
       diagonal_arr.push(positive_diagonal(current_col, 0))
     end
 
-    # negative diagonals
+    diagonal_arr
+  end
+
+  def all_negative_diagonals
+    diagonal_arr = []
+
     # represents height as 0-based index
     top_row = HEIGHT - 1
 
-    # negative diagonal (left edge (exclude corner (top_row)))
+    # left edge (exclude corner (top_row))
+    # works in upward direction
     ((4 - 1)...top_row).each do |current_row|
       diagonal_arr.push(negative_diagonal(0, current_row))
     end
 
-    # negative diagonal top left corner
+    # top left corner
     diagonal_arr.push(negative_diagonal(0, top_row))
 
-    # negative diagonal (top edge (exclude corner))
+    # top edge (exclude corner)
+    # works in rightward direction
     (1..(WIDTH - 4)).each do |current_col|
       diagonal_arr.push(negative_diagonal(current_col, top_row))
     end
