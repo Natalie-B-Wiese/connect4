@@ -31,45 +31,34 @@ class Board
   def all_diagonals
     diagonal_arr = []
 
-    # positive diagonal
-    col = 0
-    row = HEIGHT - 4
-
-    # 0, 2
-    # 0, 1
-    # 0, 0
-    while row >= 0
-      diagonal_arr.push(positive_diagonal(col, row))
-      row -= 1
+    # positive diagonal (left edge (exclude corner))
+    (1..(HEIGHT - 4)).each do |current_row|
+      diagonal_arr.push(positive_diagonal(0, current_row))
     end
 
-    # width is 7
-    # while col<=3
+    # positive diagonal bottom left corner
+    diagonal_arr.push(positive_diagonal(0, 0))
 
-    # 1, 0
-    # 2, 0
-    # 3, 0
-    col = 1
-    row = 0
-    while col <= (WIDTH - 4)
-      diagonal_arr.push(positive_diagonal(col, row))
-      col += 1
+    # positive diagonal (bottom edge (exclude corner))
+    (1..(WIDTH - 4)).each do |current_col|
+      diagonal_arr.push(positive_diagonal(current_col, 0))
     end
 
     # negative diagonals
-    col = 0
-    row = 4 - 1
+    # represents height as 0-based index
+    top_row = HEIGHT - 1
 
-    while row < HEIGHT
-      diagonal_arr.push(negative_diagonal(col, row))
-      row += 1
+    # negative diagonal (left edge (exclude corner (top_row)))
+    ((4 - 1)...top_row).each do |current_row|
+      diagonal_arr.push(negative_diagonal(0, current_row))
     end
 
-    col = 1
-    row = HEIGHT - 1
-    while col <= (WIDTH - 4)
-      diagonal_arr.push(negative_diagonal(col, row))
-      col += 1
+    # negative diagonal top left corner
+    diagonal_arr.push(negative_diagonal(0, top_row))
+
+    # negative diagonal (top edge (exclude corner))
+    (1..(WIDTH - 4)).each do |current_col|
+      diagonal_arr.push(negative_diagonal(current_col, top_row))
     end
 
     diagonal_arr
