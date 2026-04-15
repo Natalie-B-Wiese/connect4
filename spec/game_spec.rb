@@ -12,6 +12,11 @@ describe Board do
         expect(result).to be_an(Array)
       end
 
+      it 'all items are nil on new board' do
+        result = board.row(first_row)
+        expect(result).to all(be_nil)
+      end
+
       it 'returns an array of length equal to board width' do
         result = board.row(first_row)
         width = Board::WIDTH
@@ -32,6 +37,11 @@ describe Board do
         width = Board::WIDTH
         expect(result.length).to eq(width)
       end
+
+      it 'all items are nil on new board' do
+        result = board.row(last_row)
+        expect(result).to all(be_nil)
+      end
     end
   end
 
@@ -49,6 +59,11 @@ describe Board do
         height = Board::HEIGHT
         expect(result.length).to eq(height)
       end
+
+      it 'all items are nil on new board' do
+        result = board.column(first_column)
+        expect(result).to all(be_nil)
+      end
     end
 
     context 'when getting the last column' do
@@ -63,6 +78,73 @@ describe Board do
         result = board.column(last_column)
         height = Board::HEIGHT
         expect(result.length).to eq(height)
+      end
+
+      it 'all items are nil on new board' do
+        result = board.column(last_column)
+        expect(result).to all(be_nil)
+      end
+    end
+  end
+
+  describe '#positive_diagonal' do
+    context 'when getting bottom left' do
+      row = 0
+      column = 0
+
+      it 'returns an array' do
+        result = board.diagonals(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 6' do
+        result = board.diagonals(column, row)
+        expect(result.length).to eq 6
+      end
+
+      it 'all items are nil on new board' do
+        result = board.diagonals(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+
+    context 'when getting column 0 row 2' do
+      row = 2
+      column = 0
+
+      it 'returns an array' do
+        result = board.diagonals(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 4' do
+        result = board.diagonals(column, row)
+        expect(result.length).to eq 4
+      end
+
+      it 'all items are nil on new board' do
+        result = board.diagonals(column, row)
+        expect(result).to all(be_nil)
+      end
+    end
+
+    context 'when getting top left' do
+      row = 5
+      column = 0
+
+      it 'returns an array' do
+        result = board.diagonals(column, row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length 1' do
+        result = board.diagonals(column, row)
+        expect(result.length).to eq 1
+      end
+
+      it 'all items are nil on new board' do
+        result = board.diagonals(column, row)
+        expect(result).to all(be_nil)
       end
     end
   end
