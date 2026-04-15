@@ -250,4 +250,27 @@ describe Board do
       end
     end
   end
+
+  describe '#all_diagonals' do
+    context 'when calling method' do
+      it 'returns an array' do
+        result = board.all_diagonals
+        expect(result).to be_an(Array)
+      end
+
+      it 'has a length of 12' do
+        result = board.all_diagonals
+        expect(result.length).to eq 12
+      end
+
+      matcher :contain_at_least_4_items do
+        match { |element| element.length >= 4 }
+      end
+
+      it 'All elements have at least 4 items' do
+        result = board.all_diagonals
+        expect(result).to all(contain_at_least_4_items)
+      end
+    end
+  end
 end
