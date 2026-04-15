@@ -28,7 +28,7 @@ class Board
     @board[column_index]
   end
 
-  def diagonals(column, row)
+  def positive_diagonal(column, row)
     diagonal_arr = []
     # repeat until tile is out of bounds
     while (column < WIDTH) && (row < HEIGHT)

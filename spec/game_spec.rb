@@ -93,17 +93,17 @@ describe Board do
       column = 0
 
       it 'returns an array' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result).to be_an(Array)
       end
 
       it 'returns an array of length 6' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result.length).to eq 6
       end
 
       it 'all items are nil on new board' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result).to all(be_nil)
       end
     end
@@ -113,17 +113,17 @@ describe Board do
       column = 0
 
       it 'returns an array' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result).to be_an(Array)
       end
 
       it 'returns an array of length 4' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result.length).to eq 4
       end
 
       it 'all items are nil on new board' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result).to all(be_nil)
       end
     end
@@ -133,17 +133,17 @@ describe Board do
       column = 0
 
       it 'returns an array' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result).to be_an(Array)
       end
 
       it 'returns an array of length 1' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result.length).to eq 1
       end
 
       it 'all items are nil on new board' do
-        result = board.diagonals(column, row)
+        result = board.positive_diagonal(column, row)
         expect(result).to all(be_nil)
       end
     end
