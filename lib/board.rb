@@ -23,4 +23,8 @@ class Board
 
     row_array
   end
+
+  def column(column_index)
+    @board[column_index]
+  end
 end

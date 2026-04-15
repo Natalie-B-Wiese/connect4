@@ -60,7 +60,7 @@ describe Board do
       end
 
       it 'returns an array of length equal to board height' do
-        result = board.row(last_column)
+        result = board.column(last_column)
         height = Board::HEIGHT
         expect(result.length).to eq(height)
       end
