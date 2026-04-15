@@ -18,5 +18,20 @@ describe Board do
         expect(result.length).to eq(width)
       end
     end
+
+    context 'when getting the last row' do
+      last_row = 5
+
+      it 'returns an array' do
+        result = board.row(last_row)
+        expect(result).to be_an(Array)
+      end
+
+      it 'returns an array of length equal to board width' do
+        result = board.row(last_row)
+        width = Board::WIDTH
+        expect(result.length).to eq(width)
+      end
+    end
   end
 end
