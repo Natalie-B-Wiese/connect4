@@ -14,4 +14,8 @@ class Board
       end
     end
   end
+
+  def row(row_index)
+    []
+  end
 end
