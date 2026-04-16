@@ -520,4 +520,72 @@ describe Board do
       end
     end
   end
+
+  describe '#max_player_streak' do
+    let(:player1) { Player.new('Player 1') }
+    context 'when there are 3 runs' do
+      before do
+        allow(:board).to receive(:max_player_streak_in_run).and_return(3, 10, 4)
+      end
+
+      it 'calls max_player_streak_in_run 3 times' do
+        expect(:board).to receive(:max_player_streak_in_run).exactly(3).times
+        board.max_player_streak(player1)
+      end
+
+      it 'returns the biggest number' do
+        result = board.max_player_streak(player1)
+        expect(result).to eq(10)
+      end
+    end
+
+    context 'when there are 5 runs' do
+      before do
+        allow(:board).to receive(:max_player_streak_in_run).and_return(3, 10, 4, 15, 3)
+      end
+
+      it 'calls max_player_streak_in_run 5 times' do
+        expect(:board).to receive(:max_player_streak_in_run).exactly(5).times
+        board.max_player_streak(player1)
+      end
+
+      it 'returns the biggest number' do
+        result = board.max_player_streak(player1)
+        expect(result).to eq(15)
+      end
+    end
+
+    context 'when the biggest streak is 0' do
+      before do
+        allow(:board).to receive(:max_player_streak_in_run).and_return(0, 0, 0)
+      end
+
+      it 'returns 0' do
+        result = board.max_player_streak(player1)
+        expect(result).to eq(0)
+      end
+    end
+
+    context 'when last number is biggest' do
+      before do
+        allow(:board).to receive(:max_player_streak_in_run).and_return(0, 5, 20)
+      end
+
+      it 'returns last number' do
+        result = board.max_player_streak(player1)
+        expect(result).to eq(20)
+      end
+    end
+
+    context 'when first number is biggest' do
+      before do
+        allow(:board).to receive(:max_player_streak_in_run).and_return(50, 5, 20)
+      end
+
+      it 'returns last number' do
+        result = board.max_player_streak(player1)
+        expect(result).to eq(50)
+      end
+    end
+  end
 end
