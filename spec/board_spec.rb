@@ -306,7 +306,7 @@ describe Board do
     end
   end
 
-  describe '#place_player_in_column' do
+  describe '#place_player_in_column and #get_new_chip_position_in_column' do
     context 'in the first column of an empty game' do
       let(:player1) { Player.new('Player 1') }
       subject(:my_game) { described_class.new }
@@ -328,6 +328,16 @@ describe Board do
         expect { my_game.place_player_in_column(player1, column) }.to change {
           my_game.get_new_chip_position_in_column(column)
         }.by(1)
+      end
+
+      it 'can place 3 chips in column' do
+        chip_start_index = my_game.get_new_chip_position_in_column(column)
+        my_game.place_player_in_column(player1, column)
+        my_game.place_player_in_column(player1, column)
+        my_game.place_player_in_column(player1, column)
+        chip_end_index = my_game.get_new_chip_position_in_column(column)
+
+        expect(chip_end_index - chip_start_index).to eq(3)
       end
     end
 
@@ -352,6 +362,16 @@ describe Board do
         expect { my_game.place_player_in_column(player1, column) }.to change {
           my_game.get_new_chip_position_in_column(column)
         }.by(1)
+      end
+
+      it 'can place 3 chips in column' do
+        chip_start_index = my_game.get_new_chip_position_in_column(column)
+        my_game.place_player_in_column(player1, column)
+        my_game.place_player_in_column(player1, column)
+        my_game.place_player_in_column(player1, column)
+        chip_end_index = my_game.get_new_chip_position_in_column(column)
+
+        expect(chip_end_index - chip_start_index).to eq(3)
       end
     end
   end
