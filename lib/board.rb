@@ -149,6 +149,23 @@ class Board
     @board[column_id].index(nil)
   end
 
+  def max_player_streak_in_run(player, run)
+    biggest_run_by_player = 0
+    current_run_by_player = 0
+    run.each do |chip|
+      # if the streak of this player is interruped by a nil chip or a chip that doesn't belong to this player
+      if chip.nil? || chip.belongs_to_player?(player) == false
+        current_run_by_player = 0
+      else
+        current_run_by_player += 1
+      end
+
+      biggest_run_by_player = current_run_by_player if current_run_by_player > biggest_run_by_player
+    end
+
+    biggest_run_by_player
+  end
+
   ### UNTESTED METHODS ###
   # returns true if the column is full, false otherwise
   def column_full?(column_id)
