@@ -3,6 +3,7 @@
 # a basic data structure that represents a player
 class Player
   @@player_count = 0
+  attr_reader(:id)
 
   def initialize(name)
     @id = @@player_count

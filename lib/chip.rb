@@ -4,7 +4,10 @@
 class Chip
   RED = "\e[41m"
   YELLOW = "\e[43m"
+  RESET_COLOR = "\e[49m"
+
   CHIP_COLORS = [RED, YELLOW]
+  CHIP_SYMBOL = ' O '
 
   def initialize(player)
     @player = player
@@ -12,6 +15,10 @@ class Chip
 
   def belongs_to_player?(player)
     @player == player
+  end
+
+  def to_s
+    chip_color + CHIP_SYMBOL + RESET_COLOR
   end
 
   private
