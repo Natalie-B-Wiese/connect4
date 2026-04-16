@@ -62,15 +62,21 @@ class Game
   def game_loop
     # puts @board.board_full?
     @round = 1
+    player_won = nil
 
     # this is where the loop starts
     loop do
       @board.draw_board
       play_round
-      break if @board.player_won?(current_player) || @board.board_full?
+      player_won = current_player if @board.player_won?(current_player)
+
+      break if player_won || @board.board_full?
 
       next_round
     end
+
+    # show the results
+    end_game(player_won)
   end
 
   ### UNTESTED FUNCTIONS
@@ -80,7 +86,7 @@ class Game
 
     player = current_player
 
-    puts "Player #{player} turn"
+    puts "#{player} turn"
 
     column = valid_unfull_column_number
 
@@ -93,5 +99,16 @@ class Game
     puts "Enter a column from 1 to #{Board::WIDTH}"
     string_input = gets.chomp
     to_column_number(string_input)
+  end
+
+  def end_game(player_won)
+    @board.draw_board
+    puts 'Game over!'
+
+    if player_won
+      puts "#{player_won} has won!"
+    else
+      puts 'It was a draw'
+    end
   end
 end
