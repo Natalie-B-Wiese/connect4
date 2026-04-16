@@ -126,4 +126,46 @@ describe Game do
       end
     end
   end
+
+  describe '#valid_unfull_column_number' do
+    subject(:game) { described_class.new(player1, player2) }
+    let(:board) { game.instance_variable_get(:@board) }
+    error_msg = 'Column is full!'
+
+    context 'when column is not full' do
+      before do
+        empty_column_index = 0
+        allow(game).to receive(:valid_column_number).and_return(empty_column_index)
+        allow(game).to receive(:puts)
+        allow(board).to receive(:column_full?).and_return(false)
+      end
+
+      it 'runs once with no error message' do
+        expect(game).to receive(:valid_column_number).exactly(1).times
+        expect(game).not_to receive(:puts).with(error_msg)
+        expect(board).to receive(:column_full?).exactly(1).times
+        game.valid_unfull_column_number
+      end
+    end
+
+    context 'when column is full twice and then not full' do
+      full_column = 0
+      unfull_column = 1
+      before do
+        allow(game).to receive(:valid_column_number).and_return(full_column, full_column, unfull_column)
+        allow(game).to receive(:puts)
+        allow(board).to receive(:column_full?).and_return(true, true, false)
+      end
+
+      it 'runs three times and prints two error messages' do
+        times_run = 3
+        error_times = 2
+
+        expect(game).to receive(:valid_column_number).exactly(times_run).times
+        expect(game).to receive(:puts).with(error_msg).exactly(error_times).times
+        expect(board).to receive(:column_full?).exactly(times_run).times
+        game.valid_unfull_column_number
+      end
+    end
+  end
 end
