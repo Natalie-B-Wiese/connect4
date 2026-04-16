@@ -25,12 +25,24 @@ class Game
     nil
   end
 
+  # returns a valid column number in the correct range
   def valid_column_number
     loop do
       column_index = column_prompt
       return column_index unless column_index.nil?
 
       puts 'Input error!'
+    end
+  end
+
+  # returns a valid column number in correct range that can still hold another chip
+  def valid_unfull_column_number
+    loop do
+      column_id = valid_column_number
+      column_full = @board.column_full?(column_id)
+      return unless column_full
+
+      puts 'Column is full!'
     end
   end
 
