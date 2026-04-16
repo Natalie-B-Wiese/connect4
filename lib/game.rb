@@ -24,4 +24,13 @@ class Game
 
     nil
   end
+
+  private
+
+  ### UNTESTED FUNCTIONS
+  def column_prompt
+    puts "Enter a column from 1 to #{Board::WIDTH}"
+    string_input = gets.chomp
+    to_column_number(string_input)
+  end
 end
