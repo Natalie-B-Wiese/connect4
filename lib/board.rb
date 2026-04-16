@@ -190,6 +190,20 @@ class Board
   end
 
   def draw_board
-    puts 'hello world'
+    puts 'board placeholder'
+
+    # go in reverse column order so 0th column is at the bottom
+    reversed_rows = all_rows.reverse
+
+    reversed_rows.each do |row|
+      row.each do |chip|
+        if chip.nil?
+          print "| #{Chip::CHIP_SYMBOL} |"
+        else
+          print "| #{chip} |"
+        end
+      end
+      print "\n"
+    end
   end
 end
