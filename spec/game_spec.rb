@@ -181,4 +181,14 @@ describe Game do
       end
     end
   end
+
+  describe '#next_round' do
+    context 'on game' do
+      subject(:new_game) { described_class.new(player1, player2) }
+
+      it 'increases round by 1' do
+        expect { new_game.next_round }.to change { new_game.instance_variable_get(:@round) }.by(1)
+      end
+    end
+  end
 end
