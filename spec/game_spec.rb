@@ -140,10 +140,18 @@ describe Game do
         allow(board).to receive(:column_full?).and_return(false)
       end
 
-      it 'runs once with no error message' do
-        expect(game).to receive(:valid_column_number).exactly(1).times
-        expect(game).not_to receive(:puts).with(error_msg)
+      it 'checks if column is full exactly once' do
         expect(board).to receive(:column_full?).exactly(1).times
+        game.valid_unfull_column_number
+      end
+
+      it 'calls valid_column_number exactly once' do
+        expect(game).to receive(:valid_column_number).exactly(1).times
+        game.valid_unfull_column_number
+      end
+
+      it 'has no error message' do
+        expect(game).not_to receive(:puts).with(error_msg)
         game.valid_unfull_column_number
       end
     end
@@ -157,13 +165,18 @@ describe Game do
         allow(board).to receive(:column_full?).and_return(true, true, false)
       end
 
-      it 'runs three times and prints two error messages' do
-        times_run = 3
-        error_times = 2
+      it 'checks if column is full exactly three times' do
+        expect(board).to receive(:column_full?).exactly(3).times
+        game.valid_unfull_column_number
+      end
 
-        expect(game).to receive(:valid_column_number).exactly(times_run).times
-        expect(game).to receive(:puts).with(error_msg).exactly(error_times).times
-        expect(board).to receive(:column_full?).exactly(times_run).times
+      it 'calls valid_column_number exactly three times' do
+        expect(game).to receive(:valid_column_number).exactly(3).times
+        game.valid_unfull_column_number
+      end
+
+      it 'has two error messages' do
+        expect(game).to receive(:puts).with(error_msg).exactly(2).times
         game.valid_unfull_column_number
       end
     end
