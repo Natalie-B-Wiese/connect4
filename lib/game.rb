@@ -41,7 +41,7 @@ class Game
     loop do
       column_id = valid_column_number
       column_full = @board.column_full?(column_id)
-      return unless column_full
+      return column_id unless column_full
 
       puts 'Column is full!'
     end
