@@ -191,4 +191,52 @@ describe Game do
       end
     end
   end
+
+  describe '#current_player' do
+    subject(:game) { described_class.new(player1, player2) }
+
+    context 'when round is 1' do
+      before do
+        game.instance_variable_set(:@round, 1)
+      end
+
+      it 'returns the first player' do
+        result = game.current_player
+        expect(result).to eq(player1)
+      end
+    end
+
+    context 'when round is 2' do
+      before do
+        game.instance_variable_set(:@round, 2)
+      end
+
+      it 'returns the second player' do
+        result = game.current_player
+        expect(result).to eq(player2)
+      end
+    end
+
+    context 'when round is odd' do
+      before do
+        game.instance_variable_set(:@round, 21)
+      end
+
+      it 'returns the first player' do
+        result = game.current_player
+        expect(result).to eq(player1)
+      end
+    end
+
+    context 'when round is even' do
+      before do
+        game.instance_variable_set(:@round, 22)
+      end
+
+      it 'returns the second player' do
+        result = game.current_player
+        expect(result).to eq(player2)
+      end
+    end
+  end
 end
