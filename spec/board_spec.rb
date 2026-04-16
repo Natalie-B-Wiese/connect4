@@ -109,6 +109,26 @@ describe Board do
     end
   end
 
+  describe '#all_columns' do
+    context 'when calling method' do
+      it 'returns an array' do
+        result = board.all_columns
+        expect(result).to be_an(Array)
+      end
+
+      it 'it is a 2D array' do
+        result = board.all_columns
+        expect(result).to all(be_an(Array))
+      end
+
+      it 'it has a length of Board::WIDTH' do
+        result = board.all_columns
+        width = Board::WIDTH
+        expect(result.length).to eq(width)
+      end
+    end
+  end
+
   describe '#positive_diagonal' do
     context 'when getting bottom left' do
       row = 0
