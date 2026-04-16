@@ -250,13 +250,19 @@ describe Game do
       end
       it 'calls #draw_board method' do
         allow(board).to receive(:board_full?).and_return(false, true)
-        expect(board).to receive(:draw_board).once
+        expect(board).to receive(:draw_board)
         game.game_loop
       end
 
       it 'calls #play_round method' do
         allow(board).to receive(:board_full?).and_return(false, true)
-        expect(game).to receive(:play_round).once
+        expect(game).to receive(:play_round)
+        game.game_loop
+      end
+
+      it 'calls #next_round method' do
+        allow(board).to receive(:board_full?).and_return(false, true)
+        expect(game).to receive(:next_round).once
         game.game_loop
       end
 

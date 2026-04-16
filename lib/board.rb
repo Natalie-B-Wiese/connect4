@@ -188,4 +188,8 @@ class Board
   def player_won?(player)
     max_player_streak(player) >= 4
   end
+
+  def draw_board
+    puts 'hello world'
+  end
 end

@@ -59,6 +59,20 @@ class Game
     end
   end
 
+  def game_loop
+    # puts @board.board_full?
+    @round = 1
+
+    # this is where the loop starts
+    loop do
+      @board.draw_board
+      play_round
+      break if @board.player_won?(current_player) || @board.board_full?
+
+      next_round
+    end
+  end
+
   ### UNTESTED FUNCTIONS
   # plays a single round
   def play_round
