@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'chip'
+
 class Board
   WIDTH = 7
   HEIGHT = 6
@@ -113,15 +115,21 @@ class Board
     true
   end
 
-  ### UNTESTED METHODS ###
-  # returns true if the column is full, false otherwise
-  def column_full?(column_id)
-    @board[column_id].include?(nil) == false
+  def place_player_in_column(player, column_index)
+    chip_to_place = Chip.new(player)
+    chip_position = get_new_chip_position_in_column(column_index)
+    @board[column_index][chip_position] = chip_to_place
   end
 
   # returns the the first empty slot from the bottom in the specified column
   # returns nil if the column is full
   def get_new_chip_position_in_column(column_id)
     @board[column_id].index(nil)
+  end
+
+  ### UNTESTED METHODS ###
+  # returns true if the column is full, false otherwise
+  def column_full?(column_id)
+    @board[column_id].include?(nil) == false
   end
 end
