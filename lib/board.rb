@@ -186,5 +186,6 @@ class Board
 
   # returns true if the player has 4 in a row somewhere
   def player_won?(player)
+    max_player_streak(player) >= 4
   end
 end
