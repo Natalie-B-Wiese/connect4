@@ -51,6 +51,14 @@ class Game
     @round += 1
   end
 
+  def current_player
+    if @round.odd?
+      @player1
+    else
+      @player2
+    end
+  end
+
   private
 
   ### UNTESTED FUNCTIONS
