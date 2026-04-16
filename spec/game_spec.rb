@@ -96,6 +96,7 @@ describe Game do
     context 'when column is valid' do
       it 'runs once with no error message' do
         allow(game).to receive(:to_column_number).and_return(valid_column_index)
+        allow(game).to receive(:puts)
 
         expect(game).to receive(:to_column_number).exactly(1).times
         expect(game).not_to receive(:puts).with(error_msg)
@@ -106,6 +107,7 @@ describe Game do
     context 'when column is invalid and then valid' do
       it 'runs twice and prints one error message' do
         allow(game).to receive(:to_column_number).and_return(nil, valid_column_index)
+        allow(game).to receive(:puts)
 
         expect(game).to receive(:to_column_number).exactly(2).times
         expect(game).to receive(:puts).with(error_msg).exactly(1).times
@@ -116,6 +118,7 @@ describe Game do
     context 'when column is invalid twice, and then valid' do
       it 'runs 3 times and prints two error messages' do
         allow(game).to receive(:to_column_number).and_return(nil, nil, valid_column_index)
+        allow(game).to receive(:puts)
 
         expect(game).to receive(:to_column_number).exactly(3).times
         expect(game).to receive(:puts).with(error_msg).exactly(2).times

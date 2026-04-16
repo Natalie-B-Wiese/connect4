@@ -25,6 +25,15 @@ class Game
     nil
   end
 
+  def valid_column_number
+    loop do
+      column_index = column_prompt
+      return column_index unless column_index.nil?
+
+      puts 'Input error!'
+    end
+  end
+
   private
 
   ### UNTESTED FUNCTIONS
