@@ -166,6 +166,18 @@ class Board
     biggest_run_by_player
   end
 
+  # returns the maximum streak of the player in all the runs
+  def max_player_streak(player)
+    runs = all_runs
+    max = 0
+
+    runs.each do |run|
+      streak = max_player_streak_in_run(player, run)
+      max = streak if streak > max
+    end
+    max
+  end
+
   ### UNTESTED METHODS ###
   # returns true if the column is full, false otherwise
   def column_full?(column_id)
