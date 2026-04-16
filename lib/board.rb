@@ -2,6 +2,7 @@
 
 require_relative 'chip'
 
+# a class for a board. A board cannot exist without a Game
 class Board
   WIDTH = 7
   HEIGHT = 6
