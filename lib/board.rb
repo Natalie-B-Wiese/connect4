@@ -39,6 +39,14 @@ class Board
     @board[column_index]
   end
 
+  def all_columns
+    column_arr = []
+    (0...WIDTH).each do |column_index|
+      column_arr[column_index] = column(column_index)
+    end
+    column_arr
+  end
+
   def all_diagonals
     all_positive_diagonals + all_negative_diagonals
   end
