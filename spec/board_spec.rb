@@ -47,6 +47,26 @@ describe Board do
     end
   end
 
+  describe '#all_rows' do
+    context 'when calling method' do
+      it 'returns an array' do
+        result = board.all_rows
+        expect(result).to be_an(Array)
+      end
+
+      it 'it is a 2D array' do
+        result = board.all_rows
+        expect(result).to all(be_an(Array))
+      end
+
+      it 'there are a total of Board::HEIGHT rows' do
+        result = board.all_rows
+        width = Board::HEIGHT
+        expect(result.length).to eq(width)
+      end
+    end
+  end
+
   describe '#column' do
     context 'when getting the first column' do
       first_column = 0
