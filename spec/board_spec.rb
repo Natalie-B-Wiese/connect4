@@ -444,4 +444,80 @@ describe Board do
       end
     end
   end
+
+  describe '#max_player_streak_in_run' do
+    let(:player1) { Player.new('Player 1') }
+    let(:player2) { Player.new('Player 2') }
+
+    # max_player_streak_in_run(player, run)
+    context 'when run contains no chips' do
+      it 'returns 0' do
+        run =
+          [
+            nil,
+            nil,
+            nil,
+            nil
+          ]
+        result = board.max_player_streak_in_run(player1, run)
+        expect(result).to eq(0)
+      end
+    end
+
+    context 'when run contains only opposing player chips' do
+      it 'returns 0' do
+        run =
+          [
+            Chip.new(player2),
+            Chip.new(player2),
+            Chip.new(player2),
+            Chip.new(player2)
+          ]
+        result = board.max_player_streak_in_run(player1, run)
+        expect(result).to eq(0)
+      end
+    end
+
+    context 'when run contains 3 in a row chips from player' do
+      it 'returns 3' do
+        run =
+          [
+            Chip.new(player1),
+            Chip.new(player1),
+            Chip.new(player1),
+            nil
+          ]
+        result = board.max_player_streak_in_run(player1, run)
+        expect(result).to eq(3)
+      end
+    end
+
+    context 'when there are 2 runs' do
+      it 'returns longest run' do
+        run =
+          [
+            Chip.new(player1),
+            Chip.new(player1),
+            nil,
+            Chip.new(player1)
+          ]
+        result = board.max_player_streak_in_run(player1, run)
+        expect(result).to eq(2)
+      end
+    end
+
+    context 'when run is interruped by opposing player' do
+      it 'returns correct value' do
+        run =
+          [
+            Chip.new(player1),
+            Chip.new(player2),
+            Chip.new(player1),
+            Chip.new(player1)
+          ]
+        result = board.max_player_streak_in_run(player1, run)
+        expect(result).to eq(2)
+      end
+    end
+  end
 end
