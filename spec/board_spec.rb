@@ -316,6 +316,26 @@ describe Board do
     end
   end
 
+  describe '#all_runs' do
+    context 'when calling method' do
+      it 'returns an array' do
+        result = board.all_runs
+        expect(result).to be_an(Array)
+      end
+
+      it 'it is a 2D array' do
+        result = board.all_runs
+        expect(result).to all(be_an(Array))
+      end
+
+      it 'its length is a combination of all_rows all_columns and all_diagonals' do
+        result = board.all_runs
+        desired_length = board.all_rows.length + board.all_columns.length + board.all_diagonals.length
+        expect(result.length).to eq(desired_length)
+      end
+    end
+  end
+
   describe '#board_full?' do
     context 'when board is empty' do
       it 'returns false' do
