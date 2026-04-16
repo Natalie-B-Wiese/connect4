@@ -333,6 +333,15 @@ describe Board do
         desired_length = board.all_rows.length + board.all_columns.length + board.all_diagonals.length
         expect(result.length).to eq(desired_length)
       end
+
+      matcher :contain_at_least_4_items do
+        match { |element| element.length >= 4 }
+      end
+
+      it 'All elements have at least 4 items' do
+        result = board.all_runs
+        expect(result).to all(contain_at_least_4_items)
+      end
     end
   end
 

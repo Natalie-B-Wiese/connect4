@@ -96,6 +96,11 @@ class Board
     diagonal_arr
   end
 
+  # all places where it is possible to get 4 in a row
+  def all_runs
+    all_rows + all_columns + all_diagonals
+  end
+
   # go from bottom left to top right
   # there should be no tiles to the bottom left of parameters column, row
   def positive_diagonal(column, row)
