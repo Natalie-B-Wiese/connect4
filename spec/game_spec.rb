@@ -246,6 +246,7 @@ describe Game do
     context 'when method is called' do
       before do
         allow(board).to receive(:draw_board)
+        allow(game).to receive(:play_round)
       end
       it 'calls #draw_board method' do
         allow(board).to receive(:board_full?).and_return(false, true)
@@ -255,20 +256,20 @@ describe Game do
 
       it 'calls #play_round method' do
         allow(board).to receive(:board_full?).and_return(false, true)
-        expect(board).to receive(:play_round).once
+        expect(game).to receive(:play_round).once
         game.game_loop
       end
 
       it 'stops repeating when a player has won' do
         allow(board).to receive(:player_won?).and_return(false, false, true)
 
-        expect(board).to receive(:play_round).exactly(3).times
+        expect(game).to receive(:play_round).exactly(3).times
         game.game_loop
       end
 
       it 'stops repeating if the board is full' do
         allow(board).to receive(:board_full?).and_return(false, false, false, false, true)
-        expect(board).to receive(:play_round).exactly(5).times
+        expect(game).to receive(:play_round).exactly(5).times
         game.game_loop
       end
     end
