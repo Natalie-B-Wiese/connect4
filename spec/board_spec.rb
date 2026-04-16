@@ -1,6 +1,6 @@
 require_relative '../lib/board'
 require_relative '../lib/chip'
-require_relative '../lib/chip'
+require_relative '../lib/player'
 
 describe Board do
   subject(:board) { described_class.new }
@@ -320,7 +320,7 @@ describe Board do
 
       it 'calls #get_new_chip_position_in_column to get chip placement' do
         allow(my_game).to receive(:get_new_chip_position_in_column).and_return(0)
-        expect(:my_game).to receive(get_new_chip_position_in_column)
+        expect(my_game).to receive(:get_new_chip_position_in_column).with(column)
         my_game.place_player_in_column(player1, column)
       end
 
@@ -344,7 +344,7 @@ describe Board do
 
       it 'calls #get_new_chip_position_in_column to get chip placement' do
         allow(my_game).to receive(:get_new_chip_position_in_column).and_return(0)
-        expect(:my_game).to receive(get_new_chip_position_in_column)
+        expect(my_game).to receive(:get_new_chip_position_in_column).with(column)
         my_game.place_player_in_column(player1, column)
       end
 
