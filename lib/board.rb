@@ -119,8 +119,6 @@ class Board
     @board[column_id].include?(nil) == false
   end
 
-  private
-
   # returns the the first empty slot from the bottom in the specified column
   # returns nil if the column is full
   def get_new_chip_position_in_column(column_id)

@@ -1,4 +1,6 @@
 require_relative '../lib/board'
+require_relative '../lib/chip'
+require_relative '../lib/chip'
 
 describe Board do
   subject(:board) { described_class.new }
@@ -300,6 +302,56 @@ describe Board do
       it 'returns true' do
         allow(board).to receive(:column_full?).and_return(true)
         expect(board.board_full?).to be true
+      end
+    end
+  end
+
+  describe '#place_player_in_column' do
+    context 'in the first column of an empty game' do
+      let(:player1) { Player.new('Player 1') }
+      subject(:my_game) { described_class.new }
+      column = 0
+
+      it 'creates a chip from player' do
+        allow(my_game).to receive(:get_new_chip_position_in_column).and_return(0)
+        expect(Chip).to receive(:new).with(player1)
+        my_game.place_player_in_column(player1, column)
+      end
+
+      it 'calls #get_new_chip_position_in_column to get chip placement' do
+        allow(my_game).to receive(:get_new_chip_position_in_column).and_return(0)
+        expect(:my_game).to receive(get_new_chip_position_in_column)
+        my_game.place_player_in_column(player1, column)
+      end
+
+      it 'places the chip in the correct position' do
+        expect { my_game.place_player_in_column(player1, column) }.to change {
+          my_game.get_new_chip_position_in_column(column)
+        }.by(1)
+      end
+    end
+
+    context 'in the fourth column of an empty game' do
+      let(:player1) { Player.new('Player 1') }
+      subject(:my_game) { described_class.new }
+      column = 3
+
+      it 'creates a chip from player' do
+        allow(my_game).to receive(:get_new_chip_position_in_column).and_return(0)
+        expect(Chip).to receive(:new).with(player1)
+        my_game.place_player_in_column(player1, column)
+      end
+
+      it 'calls #get_new_chip_position_in_column to get chip placement' do
+        allow(my_game).to receive(:get_new_chip_position_in_column).and_return(0)
+        expect(:my_game).to receive(get_new_chip_position_in_column)
+        my_game.place_player_in_column(player1, column)
+      end
+
+      it 'places the chip in the correct position' do
+        expect { my_game.place_player_in_column(player1, column) }.to change {
+          my_game.get_new_chip_position_in_column(column)
+        }.by(1)
       end
     end
   end
