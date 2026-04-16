@@ -7,6 +7,7 @@ class Game
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
+    @round = 0
     @board = Board.new
   end
 
@@ -44,6 +45,10 @@ class Game
 
       puts 'Column is full!'
     end
+  end
+
+  def next_round
+    @round += 1
   end
 
   private
