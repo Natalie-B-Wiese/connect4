@@ -27,6 +27,14 @@ class Board
     row_array
   end
 
+  def all_rows
+    row_arr = []
+    (0...HEIGHT).each do |row_index|
+      row_arr[row_index] = row(row_index)
+    end
+    row_arr
+  end
+
   def column(column_index)
     @board[column_index]
   end
@@ -132,5 +140,9 @@ class Board
   # returns true if the column is full, false otherwise
   def column_full?(column_id)
     @board[column_id].include?(nil) == false
+  end
+
+  # returns true if the player has 4 in a row somewhere
+  def player_won?(player)
   end
 end
