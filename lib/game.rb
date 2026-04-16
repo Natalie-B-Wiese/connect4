@@ -59,9 +59,22 @@ class Game
     end
   end
 
+  ### UNTESTED FUNCTIONS
+  # plays a single round
+  def play_round
+    puts "Round #{@round}"
+
+    player = current_player
+
+    puts "Player #{player} turn"
+
+    column = valid_unfull_column_number
+
+    @board.place_player_in_column(player, column)
+  end
+
   private
 
-  ### UNTESTED FUNCTIONS
   def column_prompt
     puts "Enter a column from 1 to #{Board::WIDTH}"
     string_input = gets.chomp
